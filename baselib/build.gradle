@@ -30,12 +30,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    def dagger_ver = "2.16"
-    api "com.google.dagger:dagger:$dagger_ver"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_ver"
-    api "com.google.dagger:dagger-android:$dagger_ver"
-    api "com.google.dagger:dagger-android-support:$dagger_ver"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_ver"
+    api rootProject.ext.dagger
+    api rootProject.ext.daggerAndroid
+    api rootProject.ext.daggerAndroidSupport
+    annotationProcessor rootProject.ext.daggerCompiler
+    annotationProcessor rootProject.ext.daggerAndroidCompiler
     def support_version = "28.0.0-rc02"
     api "com.android.support:appcompat-v7:$support_version"
     api "com.android.support:recyclerview-v7:$support_version"

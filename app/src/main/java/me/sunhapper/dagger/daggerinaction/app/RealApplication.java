@@ -1,4 +1,4 @@
-package dagger.sunhapper.me.daggerinaction.app;
+package me.sunhapper.dagger.daggerinaction.app;
 
 import dagger.sunhapper.me.baselib.application.BaseApplication;
 
