@@ -18,6 +18,7 @@ public interface SimpleComponent {
 
     @Component.Builder
     interface Builder {
+        //创建Component的时候绑定实例
         @BindsInstance
         Builder simpleActivity(Activity simpleActivity);
 

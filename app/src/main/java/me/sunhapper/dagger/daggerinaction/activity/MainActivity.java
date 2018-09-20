@@ -32,14 +32,17 @@ public class MainActivity extends BaseActivity {
     }
 
     public void enterSubComponent1(View view) {
-
+        Intent intent = new Intent(this, SubComponentActivity1.class);
+        startActivity(intent);
     }
 
     public void enterSubComponent2(View view) {
-
+        Intent intent = new Intent(this, SubComponentActivity2.class);
+        startActivity(intent);
     }
 
     public void enterSubComponent3(View view) {
-
+        Intent intent = new Intent(this, SubComponentActivity3.class);
+        startActivity(intent);
     }
 }
