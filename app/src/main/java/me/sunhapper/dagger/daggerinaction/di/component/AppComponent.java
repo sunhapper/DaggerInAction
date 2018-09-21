@@ -4,6 +4,7 @@ import dagger.Component;
 import dagger.sunhapper.me.baselib.di.component.BaseAppComponent;
 import dagger.sunhapper.me.baselib.di.scope.AppScope;
 import me.sunhapper.dagger.daggerinaction.app.RealApplication;
+import me.sunhapper.dagger.daggerinaction.di.module.ActivitysModule;
 import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
 
 /**
@@ -11,9 +12,10 @@ import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
  * 使用dependencies实现Component的依赖
  */
 @AppScope
-@Component(dependencies = BaseAppComponent.class, modules = AppModule.class)
+@Component(dependencies = BaseAppComponent.class, modules = {AppModule.class, ActivitysModule.class})
 public interface AppComponent {
 
+    //如果有component使用dependencies，则需要显式声明可以提供的对象
     Integer versionCode();
 
     void inject(RealApplication application);

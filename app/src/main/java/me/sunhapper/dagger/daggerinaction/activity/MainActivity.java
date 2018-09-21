@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import dagger.sunhapper.me.baselib.activity.BaseActivity;
+import dagger.sunhapper.me.baselib.activity.BaseImplActivity;
 import dagger.sunhapper.me.daggerinaction.R;
 
 public class MainActivity extends BaseActivity {
@@ -21,10 +22,14 @@ public class MainActivity extends BaseActivity {
     }
 
     public void enterDaggerAndroidActivity(View view) {
+        Intent intent = new Intent(this, DaggerAndroidActivity.class);
+        startActivity(intent);
 
     }
 
     public void enterMvpActivity(View view) {
+        Intent intent = new Intent(this, BaseImplActivity.class);
+        startActivity(intent);
 
     }
 
