@@ -8,7 +8,7 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
-import dagger.sunhapper.me.baselib.application.BaseApplication;
+import dagger.sunhapper.me.baselib.di.BaseLibComponentManager;
 import dagger.sunhapper.me.baselib.di.module.BaseActivitysModule;
 import dagger.sunhapper.me.baselib.di.module.BaseAppModule;
 
@@ -21,8 +21,7 @@ import dagger.sunhapper.me.baselib.di.module.BaseAppModule;
         BaseAppModule.class,
         AndroidSupportInjectionModule.class})
 @Singleton
-public interface BaseAppComponent extends AndroidInjector<BaseApplication> {
+public interface BaseAppComponent extends AndroidInjector<BaseLibComponentManager> {
     Application application();
-
     Integer versionCode();
 }
