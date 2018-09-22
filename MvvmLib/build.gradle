@@ -1,33 +1,33 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
+
+
+
     defaultConfig {
-        applicationId "dagger.sunhapper.me.daggerinaction"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':baselib')
-    implementation project(':MvpLib')
-    implementation project(':MvvmLib')
-
+    implementation project(':apilib')
     annotationProcessor rootProject.ext.daggerCompiler
     annotationProcessor rootProject.ext.daggerAndroidCompiler
 }
