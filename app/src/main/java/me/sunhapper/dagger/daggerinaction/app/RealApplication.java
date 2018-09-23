@@ -8,8 +8,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.sunhapper.me.baselib.application.BaseApplication;
-import dagger.sunhapper.me.baselib.di.BaseLibComponentManager;
-import dagger.sunhapper.me.baselib.di.component.BaseAppComponent;
+import dagger.sunhapper.me.baselib.di.module.BaseAppModule;
 import me.sunhapper.dagger.daggerinaction.di.component.AppComponent;
 import me.sunhapper.dagger.daggerinaction.di.component.DaggerAppComponent;
 import timber.log.Timber;
@@ -24,18 +23,13 @@ public class RealApplication extends BaseApplication implements HasActivityInjec
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;
     private AppComponent appComponent;
-    private BaseAppComponent mBaseAppComponent;
 
     @Override
     public void onCreate() {
         Timber.plant(new Timber.DebugTree());
         super.onCreate();
-        mBaseAppComponent = BaseLibComponentManager
-                .getInstance()
-                .init(this)
-                .getBaseAppComponent();
         appComponent = DaggerAppComponent.builder()
-                .baseAppComponent(mBaseAppComponent)
+                .baseAppModule(new BaseAppModule(this))
                 .build();
         appComponent.inject(this);
         Timber.i("onCreate: %s", versionCode);

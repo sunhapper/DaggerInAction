@@ -1,7 +1,10 @@
 package me.sunhapper.dagger.daggerinaction.di.component;
 
 import dagger.Component;
-import dagger.sunhapper.me.baselib.di.component.BaseAppComponent;
+import dagger.android.AndroidInjectionModule;
+import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.sunhapper.me.baselib.di.module.BaseActivitysModule;
+import dagger.sunhapper.me.baselib.di.module.BaseAppModule;
 import dagger.sunhapper.me.baselib.di.scope.AppScope;
 import me.sunhapper.dagger.daggerinaction.app.RealApplication;
 import me.sunhapper.dagger.daggerinaction.di.module.ActivitysModule;
@@ -12,7 +15,13 @@ import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
  * 使用dependencies实现Component的依赖
  */
 @AppScope
-@Component(dependencies = BaseAppComponent.class, modules = {AppModule.class, ActivitysModule.class})
+@Component(
+        modules = {AppModule.class,
+                BaseActivitysModule.class,
+                AndroidInjectionModule.class,
+                BaseAppModule.class,
+                AndroidSupportInjectionModule.class,
+                ActivitysModule.class})
 public interface AppComponent {
 
     //如果有component使用dependencies，则需要显式声明可以提供的对象

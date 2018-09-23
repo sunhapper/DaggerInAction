@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import dagger.sunhapper.me.baselib.di.BaseLibComponentManager;
+import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 /**
@@ -19,7 +19,7 @@ public class BaseImplActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BaseLibComponentManager.getInstance().inject(this);
+        AndroidInjection.inject(this);
         Timber.i("onCreate: %s", versionCode);
     }
 }
