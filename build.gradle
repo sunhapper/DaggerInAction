@@ -41,4 +41,12 @@ ext {
     daggerAndroid = "com.google.dagger:dagger-android:${daggerVersion}"
     daggerAndroidSupport = "com.google.dagger:dagger-android-support:${daggerVersion}"
     daggerAndroidCompiler = "com.google.dagger:dagger-android-processor:${daggerVersion}"
+    room_version = "1.1.1"
+    room = "android.arch.persistence.room:runtime:${room_version}"
+    room_compiler = "android.arch.persistence.room:compiler:${room_version}"
+    room_rxjava = "android.arch.persistence.room:rxjava2:${room_version}"
+    lifecycle_version = "1.1.1"
+    lifecycle = "android.arch.lifecycle:extensions:${lifecycle_version}"
+    lifecycle_compiler = "android.arch.lifecycle:compiler:${lifecycle_version}"
+    lifecycle_rx = "android.arch.lifecycle:reactivestreams:${lifecycle_version}"
 }

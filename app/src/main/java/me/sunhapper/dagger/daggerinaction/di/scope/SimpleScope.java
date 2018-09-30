@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import javax.inject.Scope;
 
 /**
- * Created by sunhapper(haipeng.sun3@56qq.com) on 2018/8/16 .
+ * Created by sunhapper on 2018/8/16 .
  */
 @Scope
 @Documented

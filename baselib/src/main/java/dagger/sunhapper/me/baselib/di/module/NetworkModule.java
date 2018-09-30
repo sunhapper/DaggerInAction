@@ -14,12 +14,11 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.sunhapper.me.baselib.network.LogInterceptor;
 import okhttp3.OkHttpClient;
-import retrofit2.CallAdapter;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 
 /**
- * Created by sunhapper(haipeng.sun3@56qq.com) on 2018/9/4 .
+ * Created by sunhapper on 2018/9/4 .
  */
 @Module
 public class NetworkModule {
@@ -47,7 +46,7 @@ public class NetworkModule {
 
     @Singleton
     @Provides
-    public CallAdapter.Factory provideRetrofitCallAdapterFactory() {
+    public RxJava2CallAdapterFactory provideRxJavaRetrofitCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
 

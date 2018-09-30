@@ -12,7 +12,7 @@ import okio.Buffer;
 import timber.log.Timber;
 
 /**
- * Created by sunhapper(haipeng.sun3@56qq.com) on 2018/9/6 .
+ * Created by sunhapper on 2018/9/6 .
  */
 public class LogInterceptor implements Interceptor {
     @Override

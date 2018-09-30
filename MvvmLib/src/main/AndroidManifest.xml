@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="dagger.sunhapper.me.mvvmlib"/>
+          package="dagger.sunhapper.me.mvvmlib">
+
+    <application>
+        <activity android:name="me.sunhapper.dagger.mvvm.activity.MvvmActivity">
+
+        </activity>
+    </application>
+</manifest>
