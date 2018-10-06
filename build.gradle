@@ -49,4 +49,7 @@ ext {
     lifecycle = "android.arch.lifecycle:extensions:${lifecycle_version}"
     lifecycle_compiler = "android.arch.lifecycle:compiler:${lifecycle_version}"
     lifecycle_rx = "android.arch.lifecycle:reactivestreams:${lifecycle_version}"
+    glide_version = "4.8.0"
+    glide = "com.github.bumptech.glide:glide:${glide_version}"
+    glide_compiler = "com.github.bumptech.glide:compiler:${glide_version}"
 }

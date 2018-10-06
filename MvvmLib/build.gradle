@@ -28,6 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':baselib')
     implementation project(':apilib')
+    annotationProcessor rootProject.ext.glide_compiler
     annotationProcessor rootProject.ext.daggerCompiler
     annotationProcessor rootProject.ext.daggerAndroidCompiler
     implementation rootProject.ext.lifecycle
