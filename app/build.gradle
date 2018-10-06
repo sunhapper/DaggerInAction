@@ -30,5 +30,5 @@ dependencies {
 
     annotationProcessor rootProject.ext.daggerCompiler
     annotationProcessor rootProject.ext.daggerAndroidCompiler
-    compile project(path: ':apilib')
+    implementation project(path: ':apilib')
 }
