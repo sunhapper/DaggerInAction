@@ -55,6 +55,13 @@ dependencies {
     api rootProject.ext.room
     api rootProject.ext.room_rxjava
     annotationProcessor rootProject.ext.room_compiler
+    api rootProject.ext.rxlifecycle
+    api rootProject.ext.rxlifecycle_android
+    api rootProject.ext.rxlifecycle_components
+    api rootProject.ext.rxlifecycle_android_lifecycle
+    api rootProject.ext.auto_dispose
+    api rootProject.ext.auto_dispose_lifecycle
+    api rootProject.ext.auto_dispose_android
 //    def paging_version = "1.0.1"
 //    api "android.arch.paging:runtime:$paging_version"
 //    testImplementation "android.arch.paging:common:$paging_version"
