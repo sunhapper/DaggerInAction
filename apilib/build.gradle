@@ -33,7 +33,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':baselib')
-    annotationProcessor rootProject.ext.daggerCompiler
-    annotationProcessor rootProject.ext.daggerAndroidCompiler
+    annotationProcessor rootProject.ext.dagger_compiler
+    annotationProcessor rootProject.ext.dagger_android_compiler
     annotationProcessor rootProject.ext.room_compiler
 }

@@ -29,8 +29,8 @@ dependencies {
     implementation project(':baselib')
     implementation project(':apilib')
     annotationProcessor rootProject.ext.glide_compiler
-    annotationProcessor rootProject.ext.daggerCompiler
-    annotationProcessor rootProject.ext.daggerAndroidCompiler
+    annotationProcessor rootProject.ext.dagger_compiler
+    annotationProcessor rootProject.ext.dagger_android_compiler
     implementation rootProject.ext.lifecycle
     annotationProcessor rootProject.ext.lifecycle_compiler
     implementation rootProject.ext.lifecycle_rx
