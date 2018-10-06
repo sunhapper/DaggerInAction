@@ -1,5 +1,7 @@
 package me.sunhapper.dagger.apilib.api;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -13,5 +15,9 @@ import retrofit2.http.Path;
  */
 public interface GankApiService {
     @GET("api/data/福利/{pageSize}/{pageNum}")
-    Flowable<BaseGankBean<List<Meizi>>> getMeiziImgList(@Path("pageSize") int pageSize, @Path("pageNum") int pageNum);
+    Flowable<BaseGankBean<List<Meizi>>> getMeiziImgListByRxJava(@Path("pageSize") int pageSize, @Path("pageNum") int pageNum);
+
+    @GET("api/data/福利/{pageSize}/{pageNum}")
+    LiveData<BaseGankBean<List<Meizi>>> getMeiziImgListByLiveData(@Path("pageSize") int pageSize, @Path("pageNum") int pageNum);
+
 }

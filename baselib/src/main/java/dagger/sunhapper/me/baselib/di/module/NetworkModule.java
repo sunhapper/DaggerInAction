@@ -12,6 +12,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.sunhapper.me.baselib.network.LiveDataCallAdapterFactory;
 import dagger.sunhapper.me.baselib.network.LogInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -49,6 +50,10 @@ public class NetworkModule {
     public RxJava2CallAdapterFactory provideRxJavaRetrofitCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
-
+    @Singleton
+    @Provides
+    public LiveDataCallAdapterFactory provideLiveDataCallAdapterFactory() {
+        return new  LiveDataCallAdapterFactory();
+    }
 
 }

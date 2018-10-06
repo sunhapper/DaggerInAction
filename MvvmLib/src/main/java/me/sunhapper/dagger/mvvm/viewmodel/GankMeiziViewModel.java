@@ -1,6 +1,7 @@
 package me.sunhapper.dagger.mvvm.viewmodel;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import me.sunhapper.dagger.apilib.bean.BaseGankBean;
 import me.sunhapper.dagger.apilib.bean.Meizi;
 import me.sunhapper.dagger.mvvm.repository.GankRepository;
 
@@ -25,5 +27,9 @@ public class GankMeiziViewModel extends BaseViewModel {
 
     public Flowable<List<Meizi>> getMeiziList(int pageNum) {
         return mGankRepository.getMeiziList(pageNum);
+    }
+
+    public LiveData<BaseGankBean<List<Meizi>>> getMeiziListByLiveData(int pageNum) {
+        return mGankRepository.getMeiziListByLiveData(pageNum);
     }
 }

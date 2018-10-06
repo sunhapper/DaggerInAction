@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.sunhapper.me.baselib.network.LiveDataCallAdapterFactory;
 import me.sunhapper.dagger.apilib.api.GankApiService;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -22,14 +23,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiServiceModule {
     @Singleton
     @Provides
-    public GankApiService provideGankApiService(OkHttpClient client, RxJava2CallAdapterFactory callAdapterFactory) {
+    public GankApiService provideGankApiService(OkHttpClient client,
+            RxJava2CallAdapterFactory rxJava2CallAdapterFactory,
+            LiveDataCallAdapterFactory liveDataCallAdapterFactory) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z").create();
         GsonConverterFactory factory = GsonConverterFactory.create(gson);
         return new Retrofit.Builder()
                 .baseUrl(GANK_IO_HOST)
                 .client(client)
                 .addConverterFactory(factory)
-                .addCallAdapterFactory(callAdapterFactory)
+                .addCallAdapterFactory(liveDataCallAdapterFactory)
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .build().create(GankApiService.class);
     }
 }

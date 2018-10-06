@@ -1,5 +1,7 @@
 package me.sunhapper.dagger.mvvm.repository;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,7 +30,7 @@ public class GankRepository {
 
     public Flowable<List<Meizi>> getMeiziList(int pageNum) {
         Flowable<List<Meizi>> flowable;
-        final Flowable<BaseGankBean<List<Meizi>>> networkFlowable = mGankApiService.getMeiziImgList(DEFAULT_PAGE_SIZE,
+        final Flowable<BaseGankBean<List<Meizi>>> networkFlowable = mGankApiService.getMeiziImgListByRxJava(DEFAULT_PAGE_SIZE,
                 pageNum);
 //        if (pageNum == INIT_PAGE_NUM) {
 //
@@ -46,5 +48,9 @@ public class GankRepository {
             flowable = networkFlowable.compose(ApiRxUtil.<List<Meizi>>getGankResultContent());
 //        }
         return flowable;
+    }
+
+    public LiveData<BaseGankBean<List<Meizi>>> getMeiziListByLiveData(int pageNum) {
+        return mGankApiService.getMeiziImgListByLiveData(DEFAULT_PAGE_SIZE,pageNum);
     }
 }
