@@ -29,8 +29,12 @@ public class GankRepository {
     }
 
     public Flowable<List<Meizi>> getMeiziList(int pageNum) {
+       return getMeiziList(DEFAULT_PAGE_SIZE,pageNum);
+    }
+
+    public Flowable<List<Meizi>> getMeiziList(int pageSize,int pageNum) {
         Flowable<List<Meizi>> flowable;
-        final Flowable<BaseGankBean<List<Meizi>>> networkFlowable = mGankApiService.getMeiziImgListByRxJava(DEFAULT_PAGE_SIZE,
+        final Flowable<BaseGankBean<List<Meizi>>> networkFlowable = mGankApiService.getMeiziImgListByRxJava(pageSize,
                 pageNum);
 //        if (pageNum == INIT_PAGE_NUM) {
 //

@@ -6,6 +6,7 @@ import android.view.View;
 
 import dagger.sunhapper.me.baselib.activity.BaseActivity;
 import dagger.sunhapper.me.daggerinaction.R;
+import me.sunhapper.dagger.mvvm.activity.MeiziTimerActivity;
 import me.sunhapper.dagger.mvvm.activity.MvvmActivity;
 
 public class MainActivity extends BaseActivity {
@@ -48,6 +49,11 @@ public class MainActivity extends BaseActivity {
 
     public void enterSubComponent3(View view) {
         Intent intent = new Intent(this, SubComponentActivity3.class);
+        startActivity(intent);
+    }
+
+    public void enterMeiziTimerActivity(View view) {
+        Intent intent = new Intent(this, MeiziTimerActivity.class);
         startActivity(intent);
     }
 }

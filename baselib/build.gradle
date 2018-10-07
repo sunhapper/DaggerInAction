@@ -61,6 +61,7 @@ dependencies {
     api rootProject.ext.auto_dispose
     api rootProject.ext.auto_dispose_lifecycle
     api rootProject.ext.auto_dispose_android
+    api rootProject.ext.auto_dispose_android_archcomponents
 //    def paging_version = "1.0.1"
 //    api "android.arch.paging:runtime:$paging_version"
 //    testImplementation "android.arch.paging:common:$paging_version"

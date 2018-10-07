@@ -2,6 +2,7 @@ package me.sunhapper.dagger.mvvm.di.module;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import me.sunhapper.dagger.mvvm.activity.MeiziTimerActivity;
 import me.sunhapper.dagger.mvvm.activity.MvvmActivity;
 
 /**
@@ -11,4 +12,7 @@ import me.sunhapper.dagger.mvvm.activity.MvvmActivity;
 public abstract class MvvmActivitysModule {
     @ContributesAndroidInjector
     abstract MvvmActivity contributeMvvmActivityInjector();
+
+    @ContributesAndroidInjector
+    abstract MeiziTimerActivity contributeMeiziTimerActivityInjector();
 }

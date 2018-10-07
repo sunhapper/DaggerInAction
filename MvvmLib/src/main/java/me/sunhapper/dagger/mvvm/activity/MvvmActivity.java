@@ -26,14 +26,14 @@ import timber.log.Timber;
 public class MvvmActivity extends BaseMvvmActivity<GankMeiziViewModel> {
     private RecyclerView mRvMeizi;
     private ImageAdapter mImageAdapter;
-    private List<Meizi> mMeizis=new ArrayList<>();
+    private List<Meizi> mMeizis = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvvm);
         initView();
-        mImageAdapter=new ImageAdapter(mMeizis);
+        mImageAdapter = new ImageAdapter(mMeizis);
         mRvMeizi.setAdapter(mImageAdapter);
         mRvMeizi.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,47 +55,27 @@ public class MvvmActivity extends BaseMvvmActivity<GankMeiziViewModel> {
         mRvMeizi = (RecyclerView) findViewById(R.id.rv_meizi);
     }
 
-    public void loadByRxJavaWithLifecycle(View view) {
-        mViewModel.getMeiziList(1)
-                .compose(RxUtil.<List<Meizi>>applySchedulers())
-                .subscribe(new DefaultSubscriber<List<Meizi>>() {
-                    @Override
-                    public void onNext(List<Meizi> meizis) {
-                        Toast.makeText(MvvmActivity.this, "load_success_by_rxjava", Toast.LENGTH_SHORT).show();
-                        Timber.i("onNext: %s", meizis.size());
-                        refreshData(meizis);
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        Timber.e(t);
-                        Toast.makeText(MvvmActivity.this, "load_error", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Timber.i("onComplete");
-                    }
-                });
-    }
 
     public void loadByLiveData(View view) {
         mViewModel.getMeiziListByLiveData(1)
                 .observe(this, new Observer<BaseGankBean<List<Meizi>>>() {
                     @Override
                     public void onChanged(@Nullable BaseGankBean<List<Meizi>> baseGankBean) {
-                        if (baseGankBean!=null&&baseGankBean.isSuccess()){
+                        if (baseGankBean != null && baseGankBean.isSuccess()) {
                             Toast.makeText(MvvmActivity.this, "load_success_by_live_data", Toast.LENGTH_SHORT).show();
-                            List<Meizi> meizis=baseGankBean.get();
+                            List<Meizi> meizis = baseGankBean.get();
                             refreshData(meizis);
                         }
                     }
                 });
     }
 
-    public void loadByRxJavaWithAutoDispose(View view) {
+    public void loadByRxJava(View view) {
         mViewModel.getMeiziList(1)
+//                .compose(this.<List<Meizi>>bindToLifecycle())//RxLifecycle
+//                .compose(provider.<List<Meizi>>bindToLifecycle())//RxLifecycle-Android-Lifecycle
                 .compose(RxUtil.<List<Meizi>>applySchedulers())
+//                .as(AutoDispose.<List<Meizi>>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
                 .subscribe(new DefaultSubscriber<List<Meizi>>() {
                     @Override
                     public void onNext(List<Meizi> meizis) {

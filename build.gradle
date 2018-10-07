@@ -77,4 +77,5 @@ ext {
     auto_dispose = "com.uber.autodispose:autodispose:${auto_dispose_version}"
     auto_dispose_lifecycle = "com.uber.autodispose:autodispose-lifecycle:${auto_dispose_version}"
     auto_dispose_android = "com.uber.autodispose:autodispose-android:${auto_dispose_version}"
+    auto_dispose_android_archcomponents = "com.uber.autodispose:autodispose-android-archcomponents:${auto_dispose_version}"
 }

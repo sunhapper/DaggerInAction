@@ -6,6 +6,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 import me.sunhapper.dagger.mvvm.viewmodel.GankMeiziViewModel;
+import me.sunhapper.dagger.mvvm.viewmodel.MeiziTimerViewModel;
 
 /**
  * Created by sunhapper on 2018/9/6 .
@@ -17,4 +18,9 @@ abstract public class ViewModelModule {
     @ViewModelKey(GankMeiziViewModel.class)
     abstract ViewModel bindGankMeiziViewModel(GankMeiziViewModel viewModel);
 
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MeiziTimerViewModel.class)
+    abstract ViewModel bindMeiziTimerViewModel(MeiziTimerViewModel viewModel);
 }
