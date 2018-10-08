@@ -36,13 +36,13 @@ public class MeiziTimerViewModel extends BaseViewModel {
 
     public Flowable<Meizi> getOneMeizi() {
         if (meiziTimerFlowable == null) {
-            meiziTimerFlowable= Flowable.interval(0,3, TimeUnit.SECONDS)
+            meiziTimerFlowable = Flowable.interval(0, 8, TimeUnit.SECONDS)
                     .publish()
                     .autoConnect()
                     .map(new Function<Long, Integer>() {
                         @Override
                         public Integer apply(Long aLong) throws Exception {
-                            int count= (int) (1+aLong);
+                            int count = (int) (1 + aLong);
                             Timber.i("%d", count);
                             return count;
                         }
@@ -56,7 +56,7 @@ public class MeiziTimerViewModel extends BaseViewModel {
                     .filter(new Predicate<List<Meizi>>() {
                         @Override
                         public boolean test(List<Meizi> meizis) throws Exception {
-                            return meizis.size()>0;
+                            return meizis.size() > 0;
                         }
                     })
                     .map(new Function<List<Meizi>, Meizi>() {

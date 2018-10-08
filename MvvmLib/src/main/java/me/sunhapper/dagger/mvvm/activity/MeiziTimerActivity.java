@@ -1,7 +1,6 @@
 package me.sunhapper.dagger.mvvm.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,6 +26,7 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meizi_timer);
         initView();
+        testRxLifecycle();
 
     }
 
@@ -41,7 +41,7 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
     }
 
 
-    public void testRxLifecycle(View view) {
+    public void testRxLifecycle() {
         mViewModel.getOneMeizi()
                 .compose(this.<Meizi>bindToLifecycle())//RxLifecycle
 //                .compose(provider.<List<Meizi>>bindToLifecycle())//RxLifecycle-Android-Lifecycle
@@ -67,7 +67,7 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
                 });
     }
 
-    public void testAutoDispose(View view) {
+    public void testAutoDispose() {
         mViewModel.getOneMeizi()
 //                .compose(this.<List<Meizi>>bindToLifecycle())//RxLifecycle
 //                .compose(provider.<List<Meizi>>bindToLifecycle())//RxLifecycle-Android-Lifecycle
