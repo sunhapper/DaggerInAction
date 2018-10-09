@@ -49,6 +49,6 @@ public interface AppComponent {
     void inject(RealApplication application);
 
     ActivityComponent2 getActivityComponent2();
-
-    ActivityComponent3.Builder getActivityComponent3Builder();
+//
+//    ActivityComponent3.Builder getActivityComponent3Builder();
 }

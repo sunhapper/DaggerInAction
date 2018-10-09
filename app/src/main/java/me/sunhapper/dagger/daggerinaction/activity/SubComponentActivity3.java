@@ -7,6 +7,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import dagger.sunhapper.me.daggerinaction.R;
+import me.sunhapper.dagger.daggerinaction.app.RealApplication;
 
 /**
  * Created by sunhapper on 2018/9/20 .
@@ -19,7 +20,7 @@ public class SubComponentActivity3 extends BaseAppActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getAppCompoent().getActivityComponent3Builder().build().inject(this);
+        ((RealApplication)getApplication()).getBuilder().build().inject(this);
         setContentView(R.layout.activity_sub_component);
         initView();
         mTvInfo.setText(String.valueOf(versionCode));

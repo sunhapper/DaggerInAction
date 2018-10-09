@@ -9,6 +9,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.sunhapper.me.baselib.application.BaseApplication;
 import dagger.sunhapper.me.baselib.di.module.BaseAppModule;
+import me.sunhapper.dagger.daggerinaction.di.component.ActivityComponent3;
 import me.sunhapper.dagger.daggerinaction.di.component.AppComponent;
 import me.sunhapper.dagger.daggerinaction.di.component.DaggerAppComponent;
 import timber.log.Timber;
@@ -18,6 +19,8 @@ import timber.log.Timber;
  */
 public class RealApplication extends BaseApplication implements HasActivityInjector {
     private static final String TAG = "RealApplication";
+    @Inject
+    ActivityComponent3.Builder mBuilder;
     @Inject
     Integer versionCode;
     @Inject
@@ -43,4 +46,9 @@ public class RealApplication extends BaseApplication implements HasActivityInjec
     public AndroidInjector<Activity> activityInjector() {
         return activityInjector;
     }
+
+    public ActivityComponent3.Builder getBuilder() {
+        return mBuilder;
+    }
+
 }
