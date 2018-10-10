@@ -11,6 +11,7 @@ import dagger.sunhapper.me.baselib.di.module.NetworkModule;
 import me.sunhapper.dagger.apilib.di.module.ApiServiceModule;
 import me.sunhapper.dagger.apilib.di.module.OrmModule;
 import me.sunhapper.dagger.daggerinaction.app.RealApplication;
+import me.sunhapper.dagger.daggerinaction.di.module.ActivitisMultibindingModule;
 import me.sunhapper.dagger.daggerinaction.di.module.ActivitysModule;
 import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
 import me.sunhapper.dagger.mvvm.di.module.MvvmActivitysModule;
@@ -30,6 +31,7 @@ import me.sunhapper.dagger.mvvm.di.module.ViewModelModule;
                 //from app
                 AppModule.class,
                 ActivitysModule.class,
+                ActivitisMultibindingModule.class,
                 //from baselib
                 BaseAppModule.class,
                 BaseActivitysModule.class,
