@@ -2,6 +2,7 @@ package me.sunhapper.dagger.daggerinaction.di.module;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import dagger.sunhapper.me.baselib.di.scope.ActivityScope;
 import me.sunhapper.dagger.daggerinaction.activity.DaggerAndroidActivity;
 
 /**
@@ -9,7 +10,7 @@ import me.sunhapper.dagger.daggerinaction.activity.DaggerAndroidActivity;
  */
 @Module
 public abstract class ActivitysModule {
-
-    @ContributesAndroidInjector
+    @ActivityScope
+    @ContributesAndroidInjector(modules = DaggerAndroidActivityModule.class)
     abstract DaggerAndroidActivity bindDaggerAndroidActivity();
 }
