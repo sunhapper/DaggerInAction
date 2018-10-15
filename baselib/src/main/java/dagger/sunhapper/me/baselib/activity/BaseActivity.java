@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Lifecycl
     protected final LifecycleProvider<Lifecycle.Event> provider
             = AndroidLifecycle.createLifecycleProvider(this);
 
-    private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
+    protected final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Override
     @NonNull

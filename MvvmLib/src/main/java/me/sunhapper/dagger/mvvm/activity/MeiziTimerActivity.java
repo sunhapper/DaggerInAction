@@ -26,8 +26,8 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meizi_timer);
         initView();
-        testRxLifecycle();
-
+//        testRxLifecycle();
+        testAutoDispose();
     }
 
 
@@ -43,8 +43,12 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
 
     public void testRxLifecycle() {
         mViewModel.getOneMeizi()
-                .compose(this.<Meizi>bindToLifecycle())//RxLifecycle
-//                .compose(provider.<List<Meizi>>bindToLifecycle())//RxLifecycle-Android-Lifecycle
+                //RxLifecycle
+                .compose(this.<Meizi>bindToLifecycle())
+                //RxLifecycle-Android-Lifecycle
+//                .compose(provider.<Meizi>bindToLifecycle())
+                //RxLifecycle 指定具体的生命周期
+//                .compose(RxLifecycle.<Meizi, ActivityEvent>bindUntilEvent(lifecycleSubject, ActivityEvent.DESTROY))
                 .compose(RxUtil.<Meizi>applySchedulers())
 //                .as(AutoDispose.<Meizi>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
                 .subscribe(new DefaultSubscriber<Meizi>() {
@@ -65,12 +69,29 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
                         Timber.i("onComplete");
                     }
                 });
+        mViewModel.getMeiziPn()
+                .compose(this.<Integer>bindToLifecycle())
+                .compose(RxUtil.<Integer>applySchedulers())
+                .subscribe(new DefaultSubscriber<Integer>() {
+                    @Override
+                    public void onNext(Integer integer) {
+                        Toast.makeText(MeiziTimerActivity.this, "" + integer, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     public void testAutoDispose() {
         mViewModel.getOneMeizi()
-//                .compose(this.<List<Meizi>>bindToLifecycle())//RxLifecycle
-//                .compose(provider.<List<Meizi>>bindToLifecycle())//RxLifecycle-Android-Lifecycle
                 .compose(RxUtil.<Meizi>applySchedulers())
                 .as(AutoDispose.<Meizi>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
                 .subscribe(new DefaultSubscriber<Meizi>() {
@@ -91,5 +112,27 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
                         Timber.i("onComplete");
                     }
                 });
+
+        mViewModel.getMeiziPn()
+                .compose(RxUtil.<Integer>applySchedulers())
+                .as(AutoDispose.<Integer>autoDisposable(AndroidLifecycleScopeProvider.from(this)))
+                .subscribe(new DefaultSubscriber<Integer>() {
+                    @Override
+                    public void onNext(Integer integer) {
+                        Toast.makeText(MeiziTimerActivity.this, "" + integer, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
+
+
 }

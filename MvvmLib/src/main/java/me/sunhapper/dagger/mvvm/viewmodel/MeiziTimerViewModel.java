@@ -27,6 +27,7 @@ public class MeiziTimerViewModel extends BaseViewModel {
     @Inject
     GankRepository mGankRepository;
     private Flowable<Meizi> meiziTimerFlowable;
+    private Flowable<Integer> meiziPnFlowable;
 
     @Inject
     public MeiziTimerViewModel(@NonNull Application application) {
@@ -35,10 +36,18 @@ public class MeiziTimerViewModel extends BaseViewModel {
 
 
     public Flowable<Meizi> getOneMeizi() {
-        if (meiziTimerFlowable == null) {
-            meiziTimerFlowable = Flowable.interval(0, 8, TimeUnit.SECONDS)
-                    .publish()
-                    .autoConnect()
+        initMeiziTimerFlowable();
+        return meiziTimerFlowable;
+    }
+
+    public Flowable<Integer> getMeiziPn() {
+        initMeiziTimerFlowable();
+        return meiziPnFlowable;
+    }
+
+    private void initMeiziTimerFlowable() {
+        if (meiziPnFlowable == null) {
+            meiziPnFlowable = Flowable.interval(0, 8, TimeUnit.SECONDS)
                     .map(new Function<Long, Integer>() {
                         @Override
                         public Integer apply(Long aLong) throws Exception {
@@ -47,12 +56,14 @@ public class MeiziTimerViewModel extends BaseViewModel {
                             return count;
                         }
                     })
-                    .flatMap(new Function<Integer, Publisher<List<Meizi>>>() {
-                        @Override
-                        public Publisher<List<Meizi>> apply(Integer i) throws Exception {
-                            return mGankRepository.getMeiziList(1, i);
-                        }
-                    })
+                    .publish()
+                    .autoConnect();
+            meiziTimerFlowable = meiziPnFlowable.flatMap(new Function<Integer, Publisher<List<Meizi>>>() {
+                @Override
+                public Publisher<List<Meizi>> apply(Integer i) throws Exception {
+                    return mGankRepository.getMeiziList(1, i);
+                }
+            })
                     .filter(new Predicate<List<Meizi>>() {
                         @Override
                         public boolean test(List<Meizi> meizis) throws Exception {
@@ -65,8 +76,8 @@ public class MeiziTimerViewModel extends BaseViewModel {
                             return meizis.get(0);
                         }
                     });
+
         }
-        return meiziTimerFlowable;
     }
 
     public LiveData<BaseGankBean<List<Meizi>>> getMeiziListByLiveData(int pageNum) {
