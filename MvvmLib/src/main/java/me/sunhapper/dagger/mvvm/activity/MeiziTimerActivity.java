@@ -48,7 +48,7 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
                 //RxLifecycle-Android-Lifecycle
 //                .compose(provider.<Meizi>bindToLifecycle())
                 //RxLifecycle 指定具体的生命周期
-//                .compose(RxLifecycle.<Meizi, ActivityEvent>bindUntilEvent(lifecycleSubject, ActivityEvent.DESTROY))
+//                .compose(this.<Meizi>bindUntilEvent(ActivityEvent.DESTROY))
                 .compose(RxUtil.<Meizi>applySchedulers())
 //                .as(AutoDispose.<Meizi>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
                 .subscribe(new DefaultSubscriber<Meizi>() {
