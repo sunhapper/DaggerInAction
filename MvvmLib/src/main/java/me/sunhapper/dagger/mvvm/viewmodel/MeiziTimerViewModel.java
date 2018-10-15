@@ -47,7 +47,7 @@ public class MeiziTimerViewModel extends BaseViewModel {
 
     private void initMeiziTimerFlowable() {
         if (meiziPnFlowable == null) {
-            meiziPnFlowable = Flowable.interval(0, 8, TimeUnit.SECONDS)
+            meiziPnFlowable = Flowable.interval(0, 2, TimeUnit.SECONDS)
                     .map(new Function<Long, Integer>() {
                         @Override
                         public Integer apply(Long aLong) throws Exception {
