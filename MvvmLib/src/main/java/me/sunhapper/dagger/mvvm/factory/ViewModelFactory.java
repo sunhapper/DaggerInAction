@@ -8,18 +8,19 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
-import javax.inject.Singleton;
+
+import me.sunhapper.dagger.mvvm.di.scope.MvvmScope;
 
 /**
  * Created by sunhapper on 2018/9/5 .
  */
-@Singleton
+@MvvmScope
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject
-    public ViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators){
+    public ViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
         this.creators = creators;
     }
 
@@ -27,9 +28,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         Provider<? extends ViewModel> creator = creators.get(modelClass);
-        if(creator == null){
-            for(Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()){
-                if(modelClass.isAssignableFrom(entry.getKey())){
+        if (creator == null) {
+            for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {
+                if (modelClass.isAssignableFrom(entry.getKey())) {
                     creator = entry.getValue();
                 }
             }

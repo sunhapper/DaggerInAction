@@ -21,10 +21,6 @@
         </activity>
         <activity android:name="dagger.sunhapper.me.baselib.activity.BaseImplActivity"/>
         <activity android:name="me.sunhapper.dagger.daggerinaction.activity.SimpleActivity"/>
-        <activity android:name="me.sunhapper.dagger.daggerinaction.activity.SubComponentActivity1"/>
-        <activity android:name="me.sunhapper.dagger.daggerinaction.activity.SubComponentActivity2"/>
-        <activity android:name="me.sunhapper.dagger.daggerinaction.activity.SubComponentActivity3"/>
-        <activity android:name="me.sunhapper.dagger.daggerinaction.activity.DaggerAndroidActivity"/>
     </application>
 
 </manifest>

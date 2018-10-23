@@ -2,7 +2,6 @@
           package="dagger.sunhapper.me.mvvmlib">
 
     <application>
-        <activity android:name="me.sunhapper.dagger.mvvm.activity.MvvmActivity"/>
         <activity android:name="me.sunhapper.dagger.mvvm.activity.MeiziTimerActivity"/>
 
     </application>

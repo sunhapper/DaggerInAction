@@ -5,12 +5,11 @@ import static me.sunhapper.dagger.apilib.common.Constants.GANK_IO_HOST;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import dagger.sunhapper.me.baselib.network.LiveDataCallAdapterFactory;
 import me.sunhapper.dagger.apilib.api.GankApiService;
+import me.sunhapper.dagger.apilib.di.scope.ApiScope;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -21,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class ApiServiceModule {
-    @Singleton
+    @ApiScope
     @Provides
     public GankApiService provideGankApiService(OkHttpClient client,
             RxJava2CallAdapterFactory rxJava2CallAdapterFactory,

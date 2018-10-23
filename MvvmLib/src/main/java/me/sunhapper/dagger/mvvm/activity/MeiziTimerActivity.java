@@ -1,6 +1,11 @@
 package me.sunhapper.dagger.mvvm.activity;
 
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -8,22 +13,32 @@ import com.bumptech.glide.Glide;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
+import javax.inject.Inject;
+
+import dagger.sunhapper.me.baselib.activity.BaseActivity;
 import dagger.sunhapper.me.baselib.commons.RxUtil;
 import dagger.sunhapper.me.mvvmlib.R;
 import io.reactivex.subscribers.DefaultSubscriber;
 import me.sunhapper.dagger.apilib.bean.Meizi;
+import me.sunhapper.dagger.mvvm.di.MvvmLibComponentManager;
+import me.sunhapper.dagger.mvvm.factory.ViewModelFactory;
 import me.sunhapper.dagger.mvvm.viewmodel.MeiziTimerViewModel;
 import timber.log.Timber;
 
 /**
  * Created by sunhapper on 2018/9/29 .
  */
-public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
+public class MeiziTimerActivity extends BaseActivity {
     private ImageView mIvForLifecycle;
+    @Inject
+    ViewModelFactory mViewModelFactory;
+    protected MeiziTimerViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MvvmLibComponentManager.getInstance().getMvvmComponent().inject(this);
+        mViewModel = createViewModel();
         setContentView(R.layout.activity_meizi_timer);
         initView();
 //        testRxLifecycle();
@@ -31,9 +46,18 @@ public class MeiziTimerActivity extends BaseMvvmActivity<MeiziTimerViewModel> {
     }
 
 
-    @Override
     protected MeiziTimerViewModel createViewModel() {
         return getViewModel(MeiziTimerViewModel.class);
+    }
+
+
+    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
+        return getViewModel(modelClass, mViewModelFactory);
+    }
+
+    private <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass,
+            @Nullable ViewModelProvider.Factory factory) {
+        return ViewModelProviders.of(this, factory).get(modelClass);
     }
 
     private void initView() {
