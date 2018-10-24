@@ -57,7 +57,7 @@ public class MeiziTimerViewModel extends BaseViewModel {
                         }
                     })
                     .publish()
-                    .autoConnect();
+                    .refCount();//开始发射数据之后如果没有了订阅者会自动停止发射 autoConnect不会
             meiziTimerFlowable = meiziPnFlowable.flatMap(new Function<Integer, Publisher<List<Meizi>>>() {
                 @Override
                 public Publisher<List<Meizi>> apply(Integer i) throws Exception {
