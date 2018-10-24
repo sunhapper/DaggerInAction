@@ -6,86 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="me.sunhapper.dagger.daggerinaction.activity.MainActivity">
-    <Button
-        android:id="@+id/tv_simple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterSimpleActivity"
-        android:text="Simple"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/tv_sub_component1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
-        android:id="@+id/tv_sub_component1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterSubComponent1"
-        android:text="SubComponent1"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/tv_sub_component2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_simple"/>
-
-    <Button
-        android:id="@+id/tv_sub_component2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterSubComponent2"
-        android:text="SubComponent2"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_sub_component1"/>
-
-
-    <Button
-        android:id="@+id/tv_sub_component3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterSubComponent3"
-        android:text="SubComponent3"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/tv_dagger_android"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_simple"/>
-
-    <Button
-        android:id="@+id/tv_dagger_android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterDaggerAndroidActivity"
-        android:text="Android"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/tv_mvp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_sub_component3"
-        app:layout_constraintTop_toBottomOf="@+id/tv_simple"/>
-    <Button
-        android:id="@+id/tv_mvp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterMvpActivity"
-        android:text="MVP"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_dagger_android"
-        app:layout_constraintTop_toBottomOf="@+id/tv_simple"/>
-
-    <Button
-        android:id="@+id/tv_mvvm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="enterMvvmActivity"
-        android:text="MVVM"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/tv_lifecycle"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dagger_android"/>
 
     <Button
         android:id="@+id/tv_lifecycle"
@@ -94,10 +15,7 @@
         android:onClick="enterMeiziTimerActivity"
         android:text="Lifecycle"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_mvvm"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dagger_android"/>
+        />
 
 
 </android.support.constraint.ConstraintLayout>

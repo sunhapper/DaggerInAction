@@ -12,9 +12,7 @@ import me.sunhapper.dagger.mvvm.di.component.MvvmComponent;
  */
 @AppScope
 @Component(dependencies = MvvmComponent.class,
-        modules = {
-                //from app
-                AppModule.class})
+        modules = {AppModule.class})
 public interface AppComponent {
 
     //如果有component使用dependencies，则需要显式声明可以提供的对象

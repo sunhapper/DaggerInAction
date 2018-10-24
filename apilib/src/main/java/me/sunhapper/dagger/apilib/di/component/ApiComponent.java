@@ -1,13 +1,7 @@
 package me.sunhapper.dagger.apilib.di.component;
 
-import android.app.Application;
-
-import com.google.gson.Gson;
-
 import dagger.Component;
 import dagger.sunhapper.me.baselib.di.component.BaseAppComponent;
-import me.sunhapper.dagger.apilib.api.GankApiService;
-import me.sunhapper.dagger.apilib.datasource.MeiziDao;
 import me.sunhapper.dagger.apilib.di.module.ApiServiceModule;
 import me.sunhapper.dagger.apilib.di.module.OrmModule;
 import me.sunhapper.dagger.apilib.di.scope.ApiScope;
@@ -19,14 +13,7 @@ import me.sunhapper.dagger.apilib.di.scope.ApiScope;
 @Component(dependencies = BaseAppComponent.class,
         modules = {OrmModule.class,
                 ApiServiceModule.class})
-public interface ApiComponent {
-    GankApiService gankApiService();
+public interface ApiComponent extends ApiPublicDependencies {
 
-    MeiziDao meiziDao();
 
-    Integer versionCode();
-
-    Gson gson();
-
-    Application application();
 }
