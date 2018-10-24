@@ -5,11 +5,10 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import dagger.sunhapper.me.baselib.BuildConfig;
+import dagger.sunhapper.me.baselib.di.scope.AppScope;
 
 /**
  * Created by sunhapper on 2018/9/19 .
@@ -23,13 +22,13 @@ public class BaseAppModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     Application provideApplication() {
         return mApplication;
     }
 
     @Provides
-    @Singleton
+    @AppScope
     Context provideContext() {
         return mApplication;
     }

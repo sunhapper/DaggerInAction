@@ -8,10 +8,9 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import dagger.sunhapper.me.baselib.di.scope.AppScope;
 import dagger.sunhapper.me.baselib.network.LiveDataCallAdapterFactory;
 import dagger.sunhapper.me.baselib.network.LogInterceptor;
 import okhttp3.OkHttpClient;
@@ -26,13 +25,13 @@ public class NetworkModule {
     private static final int DEFAULT_TIME_OUT = 15;
 
 
-    @Singleton
+    @AppScope
     @Provides
     public PersistentCookieJar provideCookieJar(Context context) {
         return new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
     }
 
-    @Singleton
+    @AppScope
     @Provides
     public OkHttpClient provideOkHttpClient(PersistentCookieJar cookieJar) {
         return new OkHttpClient.Builder()
@@ -45,15 +44,16 @@ public class NetworkModule {
 
     }
 
-    @Singleton
+    @AppScope
     @Provides
     public RxJava2CallAdapterFactory provideRxJavaRetrofitCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
-    @Singleton
+
+    @AppScope
     @Provides
     public LiveDataCallAdapterFactory provideLiveDataCallAdapterFactory() {
-        return new  LiveDataCallAdapterFactory();
+        return new LiveDataCallAdapterFactory();
     }
 
 }

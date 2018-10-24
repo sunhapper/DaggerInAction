@@ -1,4 +1,4 @@
-package me.sunhapper.dagger.daggerinaction.di.scope;
+package dagger.sunhapper.me.baselib.di.scope;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

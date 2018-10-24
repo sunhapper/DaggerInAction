@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name="dagger.sunhapper.me.baselib.activity.BaseImplActivity"/>
-        <activity android:name="me.sunhapper.dagger.daggerinaction.activity.SimpleActivity"/>
     </application>
 
 </manifest>

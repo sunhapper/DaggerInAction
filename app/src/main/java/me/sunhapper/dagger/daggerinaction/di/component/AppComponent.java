@@ -1,22 +1,31 @@
 package me.sunhapper.dagger.daggerinaction.di.component;
 
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
+import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.sunhapper.me.baselib.di.module.BaseAppCollectionModule;
+import dagger.sunhapper.me.baselib.di.scope.AppScope;
+import me.sunhapper.dagger.apilib.di.module.ApiCollectionModule;
 import me.sunhapper.dagger.daggerinaction.app.RealApplication;
 import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
-import me.sunhapper.dagger.daggerinaction.di.scope.AppScope;
-import me.sunhapper.dagger.mvvm.di.component.MvvmComponent;
+import me.sunhapper.dagger.mvvm.di.module.MvvmCollectionModule;
+import me.sunhapper.dagger.mvvm.di.module.MvvmLibActivitiesModule;
 
 /**
  * Created by sunhapper on 2018/9/20 .
  * 使用dependencies实现Component的依赖
  */
 @AppScope
-@Component(dependencies = MvvmComponent.class,
-        modules = {AppModule.class})
+@Component(modules = {
+        AndroidInjectionModule.class,
+        AndroidSupportInjectionModule.class,
+        AppModule.class,
+        BaseAppCollectionModule.class,
+        ApiCollectionModule.class,
+        MvvmCollectionModule.class,
+        MvvmLibActivitiesModule.class
+})
 public interface AppComponent {
-
-    //如果有component使用dependencies，则需要显式声明可以提供的对象
-    Integer versionCode();
 
     void inject(RealApplication application);
 

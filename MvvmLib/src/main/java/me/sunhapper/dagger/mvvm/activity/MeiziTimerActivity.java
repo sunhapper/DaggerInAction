@@ -15,12 +15,12 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import dagger.sunhapper.me.baselib.activity.BaseActivity;
 import dagger.sunhapper.me.baselib.commons.RxUtil;
 import dagger.sunhapper.me.mvvmlib.R;
 import io.reactivex.subscribers.DefaultSubscriber;
 import me.sunhapper.dagger.apilib.bean.Meizi;
-import me.sunhapper.dagger.mvvm.di.MvvmLibComponentManager;
 import me.sunhapper.dagger.mvvm.factory.ViewModelFactory;
 import me.sunhapper.dagger.mvvm.viewmodel.MeiziTimerViewModel;
 import timber.log.Timber;
@@ -37,7 +37,7 @@ public class MeiziTimerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MvvmLibComponentManager.getInstance().getMvvmComponent().inject(this);
+        AndroidInjection.inject(this);
         mViewModel = createViewModel();
         setContentView(R.layout.activity_meizi_timer);
         initView();

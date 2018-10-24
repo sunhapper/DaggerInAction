@@ -7,9 +7,9 @@ import com.google.gson.GsonBuilder;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.sunhapper.me.baselib.di.scope.AppScope;
 import dagger.sunhapper.me.baselib.network.LiveDataCallAdapterFactory;
 import me.sunhapper.dagger.apilib.api.GankApiService;
-import me.sunhapper.dagger.apilib.di.scope.ApiScope;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class ApiServiceModule {
-    @ApiScope
+    @AppScope
     @Provides
     public GankApiService provideGankApiService(OkHttpClient client,
             RxJava2CallAdapterFactory rxJava2CallAdapterFactory,

@@ -16,15 +16,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void enterSimpleActivity(View view) {
-        Intent intent = new Intent(this, SimpleActivity.class);
-        startActivity(intent);
-    }
-
-    public void enterMvpActivity(View view) {
-
-    }
-
 
     public void enterMeiziTimerActivity(View view) {
         Intent intent = new Intent(this, MeiziTimerActivity.class);

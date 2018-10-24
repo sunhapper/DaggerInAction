@@ -9,12 +9,12 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-import me.sunhapper.dagger.mvvm.di.scope.MvvmScope;
+import dagger.sunhapper.me.baselib.di.scope.AppScope;
 
 /**
  * Created by sunhapper on 2018/9/5 .
  */
-@MvvmScope
+@AppScope
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
