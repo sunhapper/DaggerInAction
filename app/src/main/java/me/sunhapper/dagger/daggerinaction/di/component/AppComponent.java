@@ -9,7 +9,6 @@ import me.sunhapper.dagger.apilib.di.module.ApiCollectionModule;
 import me.sunhapper.dagger.daggerinaction.app.RealApplication;
 import me.sunhapper.dagger.daggerinaction.di.module.AppModule;
 import me.sunhapper.dagger.mvvm.di.module.MvvmCollectionModule;
-import me.sunhapper.dagger.mvvm.di.module.MvvmLibActivitiesModule;
 
 /**
  * Created by sunhapper on 2018/9/20 .
@@ -22,8 +21,7 @@ import me.sunhapper.dagger.mvvm.di.module.MvvmLibActivitiesModule;
         AppModule.class,
         BaseAppCollectionModule.class,
         ApiCollectionModule.class,
-        MvvmCollectionModule.class,
-        MvvmLibActivitiesModule.class
+        MvvmCollectionModule.class
 })
 public interface AppComponent {
 
