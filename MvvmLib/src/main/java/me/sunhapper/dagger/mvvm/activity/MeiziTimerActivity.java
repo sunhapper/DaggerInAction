@@ -1,164 +1,59 @@
 package me.sunhapper.dagger.mvvm.activity;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.uber.autodispose.AutoDispose;
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import javax.inject.Inject;
 
-import dagger.sunhapper.me.baselib.activity.BaseActivity;
-import dagger.sunhapper.me.baselib.commons.RxUtil;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import dagger.sunhapper.me.mvvmlib.R;
-import io.reactivex.subscribers.DefaultSubscriber;
-import me.sunhapper.dagger.apilib.bean.Meizi;
-import me.sunhapper.dagger.mvvm.di.component.HasMvvmComponent;
-import me.sunhapper.dagger.mvvm.di.component.MvvmComponent;
-import me.sunhapper.dagger.mvvm.factory.ViewModelFactory;
-import me.sunhapper.dagger.mvvm.viewmodel.MeiziTimerViewModel;
-import timber.log.Timber;
+import me.sunhapper.dagger.mvvm.di.component.MvvmViewComponent;
 
-/**
- * Created by sunhapper on 2018/9/29 .
- */
-public class MeiziTimerActivity extends BaseActivity {
-    private ImageView mIvForLifecycle;
+public class MeiziTimerActivity extends AppCompatActivity implements HasFragmentInjector, HasSupportFragmentInjector {
     @Inject
-    ViewModelFactory mViewModelFactory;
-    protected MeiziTimerViewModel mViewModel;
-
+    public MvvmViewComponent.Builder mViewBuilder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-//        AndroidInjection.inject(this);
-        MvvmComponent mvvmComponent = ((HasMvvmComponent) getApplication()).get();
-        mvvmComponent.inject(this);
-        mViewModel = createViewModel();
         setContentView(R.layout.activity_meizi_timer);
-        initView();
-//        testRxLifecycle();
-        testAutoDispose();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
 
-    protected MeiziTimerViewModel createViewModel() {
-        return getViewModel(MeiziTimerViewModel.class);
+    @Inject
+    DispatchingAndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector;
+    @Inject
+    DispatchingAndroidInjector<android.app.Fragment> frameworkFragmentInjector;
+
+
+    @Override
+    public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
+        return supportFragmentInjector;
     }
 
-
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass) {
-        return getViewModel(modelClass, mViewModelFactory);
-    }
-
-    private <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass,
-            @Nullable ViewModelProvider.Factory factory) {
-        return ViewModelProviders.of(this, factory).get(modelClass);
-    }
-
-    private void initView() {
-        mIvForLifecycle = (ImageView) findViewById(R.id.iv_for_lifecycle);
-    }
-
-
-    public void testRxLifecycle() {
-        mViewModel.getOneMeizi()
-                //RxLifecycle
-                .compose(this.<Meizi>bindToLifecycle())
-                //RxLifecycle-Android-Lifecycle
-//                .compose(provider.<Meizi>bindToLifecycle())
-                //RxLifecycle 指定具体的生命周期
-//                .compose(this.<Meizi>bindUntilEvent(ActivityEvent.DESTROY))
-                .compose(RxUtil.<Meizi>applySchedulers())
-//                .as(AutoDispose.<Meizi>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
-                .subscribe(new DefaultSubscriber<Meizi>() {
-                    @Override
-                    public void onNext(Meizi meizi) {
-                        Glide.with(mIvForLifecycle).load(meizi.url).into(mIvForLifecycle);
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        Timber.e(t);
-                        Toast.makeText(MeiziTimerActivity.this, "load_error", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Toast.makeText(MeiziTimerActivity.this, "load_complete", Toast.LENGTH_SHORT).show();
-                        Timber.i("onComplete");
-                    }
-                });
-        mViewModel.getMeiziPn()
-                .compose(this.<Integer>bindToLifecycle())
-                .compose(RxUtil.<Integer>applySchedulers())
-                .subscribe(new DefaultSubscriber<Integer>() {
-                    @Override
-                    public void onNext(Integer integer) {
-                        Toast.makeText(MeiziTimerActivity.this, "" + integer, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    public void testAutoDispose() {
-        mViewModel.getOneMeizi()
-                .compose(RxUtil.<Meizi>applySchedulers())
-                .as(AutoDispose.<Meizi>autoDisposable(AndroidLifecycleScopeProvider.from(this)))//AutoDispose
-                .subscribe(new DefaultSubscriber<Meizi>() {
-                    @Override
-                    public void onNext(Meizi meizi) {
-                        Glide.with(mIvForLifecycle).load(meizi.url).into(mIvForLifecycle);
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        Timber.e(t);
-                        Toast.makeText(MeiziTimerActivity.this, "load_error", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Toast.makeText(MeiziTimerActivity.this, "load_complete", Toast.LENGTH_SHORT).show();
-                        Timber.i("onComplete");
-                    }
-                });
-
-        mViewModel.getMeiziPn()
-                .compose(RxUtil.<Integer>applySchedulers())
-                .as(AutoDispose.<Integer>autoDisposable(AndroidLifecycleScopeProvider.from(this)))
-                .subscribe(new DefaultSubscriber<Integer>() {
-                    @Override
-                    public void onNext(Integer integer) {
-                        Toast.makeText(MeiziTimerActivity.this, "" + integer, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+    @Override
+    public AndroidInjector<android.app.Fragment> fragmentInjector() {
+        return frameworkFragmentInjector;
     }
 
 

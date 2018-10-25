@@ -28,6 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':baselib')
     implementation project(':apilib')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.glide_compiler
     annotationProcessor rootProject.ext.dagger_compiler
     annotationProcessor rootProject.ext.dagger_android_compiler

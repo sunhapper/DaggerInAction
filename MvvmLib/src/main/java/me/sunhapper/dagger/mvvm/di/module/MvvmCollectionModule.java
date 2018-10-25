@@ -5,6 +5,7 @@ import dagger.Module;
 /**
  * Created by sunhapper on 2018/10/24 .
  */
-@Module(includes = {ViewModelFactoryModule.class, ViewModelModule.class, MvvmLibActivitiesModule.class})
+@Module(includes = {ViewModelFactoryModule.class, ViewModelModule.class, MvvmLibActivitiesModule.class,
+        ViewModule.class})
 public class MvvmCollectionModule {
 }
